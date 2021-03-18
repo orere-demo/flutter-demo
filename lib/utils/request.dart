@@ -5,4 +5,19 @@ import 'package:dio/dio.dart';
 // 请求前拦截
 // 请求后拦截
 
-Dio dio = new Dio();
+void configDio({
+  String baseUrl,
+}){
+
+}
+
+class DioUtils {
+  BaseOptions options = new BaseOptions(
+    baseUrl: "https://www.xx.com/api",
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  );
+  Dio dio = new Dio(options);
+
+}
+
