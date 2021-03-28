@@ -1,6 +1,4 @@
-import 'package:demo1/routes/application.dart';
-
-import '../index.dart';
+import 'package:demo1/index.dart';
 
 class LoginRoute extends StatelessWidget {
   @override
@@ -13,16 +11,22 @@ class LoginRoute extends StatelessWidget {
     // );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('答题APP'),
-      ),
-      body: Center(
-        child: TextButton(
+        appBar: AppBar(
+          title: Text('答题APP'),
+        ),
+        body: Center(
+          child: TextButton(
             onPressed: () {
               Application.router.navigateTo(context, '/home?txt=a321');
             },
-            child: Text('点击进入')),
-      ),
-    );
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Image.asset('assets/images/logo_title.png'),
+                Text('点击进入')
+              ],
+            ),
+          ),
+        ));
   }
 }

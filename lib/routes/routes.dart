@@ -1,5 +1,4 @@
 import 'package:fluro/fluro.dart';
-import 'package:demo1/routes/exportPackages.dart';
 import 'package:demo1/routes/routes_handle.dart';
 
 class Routes {
@@ -7,11 +6,12 @@ class Routes {
 
   static void defineRoutes(FluroRouter router) {
     /// 未发现对应路由
-    router.notFoundHandler = rootHandler;
+    router.notFoundHandler = homeHandler;
 
     router.define('/', handler: loginHandler);
-    router.define('/home', handler: rootHandler);
+    router.define('/home', handler: homeHandler);
     router.define('/login', handler: loginHandler);
+    router.define('/answer', handler: answerHandler);
   }
 
   // 对参数进行encode，解决参数中有特殊字符，影响fluro路由匹配
