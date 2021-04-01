@@ -1,9 +1,7 @@
 import 'dart:convert';
 
-import 'package:demo1/index.dart';
 import 'package:dio/dio.dart';
 import 'dart:async';
-import 'dart:io'; // ContentType 对象
 import 'service_url.dart';
 
 class ErrorEntity implements Exception {

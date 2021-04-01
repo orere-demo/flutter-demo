@@ -12,7 +12,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Text('模拟题'),
@@ -102,24 +101,6 @@ class _BuildBody extends State<BuildBody> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    // return ExpansionPanelList(
-    //   children: <ExpansionPanel>[
-    //     ExpansionPanel(
-    //         // headerBuilder 标题
-    //         headerBuilder: (context, isExpanded) {
-    //           return ListTile(
-    //             title: Text('我是标题'),
-    //           );
-    //         },
-    //         // body 内容
-    //         body: Padding(
-    //             padding: EdgeInsets.fromLTRB(15, 0, 16, 15),
-    //             child: Text('这是内容123')),
-    //         isExpanded: _isExpanded,
-    //         canTapOnHeader: true)
-    //   ],
-    // );
     return FutureBuilder<String>(
       future: future,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -133,19 +114,26 @@ class _BuildBody extends State<BuildBody> {
             // return Text("Contents: ${snapshot.data}");
             return Column(
               children: [
-                Row(
-                  children: [
-                    Text(
-                      '${randomData.name}',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text('${randomData.from}', textAlign: TextAlign.end),
-                  ],
+                Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${randomData.name}${randomData.name}',
+                        textAlign: TextAlign.start,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            child: Text('${randomData.from}',
+                                textAlign: TextAlign.end),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
                 _buildQuestionList()
               ],
@@ -153,7 +141,9 @@ class _BuildBody extends State<BuildBody> {
           }
         } else {
           // 请求未结束，显示loading
-          return CircularProgressIndicator();
+          return Center(
+            child: CircularProgressIndicator(),
+          );
           // return Text('${widget.txtparams}');
         }
       },

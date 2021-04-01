@@ -2,12 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
 import 'package:demo1/routes/routes.dart';
 import 'package:demo1/routes/application.dart';
+import 'package:provider/provider.dart';
 
-// import 'package:fluro/fluro.dart';
-// import 'package:provider/provider.dart';
+import 'package:demo1/model/counter_model.dart';
 
 void main() {
-  runApp(MyApp());
+  final textSize = 48;
+  final counter = CounterModel();
+
+  // Provider, 暴露数据供子孙组件使用
+  runApp(Provider<int>.value(
+      value: textSize,
+      child: ChangeNotifierProvider.value(
+        value: counter,
+        child: MyApp(),
+      )
+      // child: MyApp(),
+      ));
 }
 
 class MyApp extends StatelessWidget {
