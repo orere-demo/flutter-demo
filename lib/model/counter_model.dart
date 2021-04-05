@@ -12,7 +12,7 @@ class CounterModel with ChangeNotifier {
   get value => _count;
 }
 
-class GoodListProvider with ChangeNotifier {
+class GoodsListProvider with ChangeNotifier {
   List<Goods> _goodsList =
       List.generate(10, (index) => Goods(false, 'No.$index'));
 

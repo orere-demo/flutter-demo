@@ -59,12 +59,3 @@ class LoginRoute extends StatelessWidget {
 //   String passwd;
 //   String apikey;
 // }
-
-// class GoodsListScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return GoodListProvider(
-
-//     );
-//   }
-// }
