@@ -5,6 +5,7 @@ import 'package:demo1/routes/application.dart';
 import 'package:provider/provider.dart';
 
 import 'package:demo1/model/counter_model.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   final textSize = 48;
@@ -35,6 +36,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: [
+        // 本地化的代理类(生成本地化值集合的工厂)
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('zh', 'CN'),
+      ],
       theme: ThemeData(
           primaryColor: YColor.primaryColor,
           primarySwatch: Colors.blue,

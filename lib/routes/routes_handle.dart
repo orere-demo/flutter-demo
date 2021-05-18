@@ -22,3 +22,9 @@ Handler answerHandler = Handler(
   print(params);
   return AnswerPage(id: params['id'].first);
 });
+
+Handler goodsHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+  print(params);
+  return GoodsPage();
+});
