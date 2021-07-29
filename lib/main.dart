@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:demo1/env/env_config.dart';
-import 'package:demo1/env/config_wrapper.dart';
+// import 'package:demo1/env/env_config.dart';
+// import 'package:demo1/env/config_wrapper.dart';
 import 'package:demo1/app.dart';
 
 void main() {
@@ -8,7 +8,8 @@ void main() {
   //   child: FlutterReduxApp(),
   //   config: EnvConfig.fromJson(config),
   // ));
-  runApp(MyApp());
+  // runApp(MyApp());
+  runApp(FlutterReduxApp());
 }
 
 class MyApp extends StatelessWidget {
