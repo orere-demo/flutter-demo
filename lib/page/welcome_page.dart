@@ -1,12 +1,3 @@
-/*
- * @Author: Demo
- * @Date: 2021-07-27 16:27:57
- * @LastEditTime: 2021-07-29 17:18:16
- * @LastEditors: Please set LastEditors
- * @Description: 欢迎页 - WelcomePage
- * @FilePath: \demo1\lib\page\welcome_page.dart
- */
-
 import 'package:demo1/redux/gsy_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -64,7 +55,9 @@ class _WelcomePageState extends State<WelcomePage> {
               ),
               Align(
                 alignment: Alignment(0.0, 0.3),
-                child: DiffScaleText(),
+                child: DiffScaleText(
+                  text: text,
+                ),
               )
             ],
           ),
