@@ -1,19 +1,15 @@
-/*
- * @Author: your name
- * @Date: 2021-07-21 14:12:29
- * @LastEditTime: 2021-07-29 15:26:38
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \demo1\lib\app.dart
- */
+import 'package:demo1/page/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:demo1/page/welcome_page.dart';
-import 'package:demo1/page/photoview_page.dart';
-import 'package:demo1/redux/gsy_state.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:demo1/redux/gsy_state.dart';
 import 'package:demo1/model/User.dart';
+import 'package:demo1/common/utils/navigator_utils.dart';
+import 'package:demo1/page/welcome_page.dart';
+import 'package:demo1/page/home/home_page.dart';
+import 'package:demo1/page/login/login_page.dart';
+import 'package:demo1/page/photoview_page.dart';
 
 class FlutterReduxApp extends StatefulWidget {
   FlutterReduxApp({Key? key}) : super(key: key);
@@ -68,6 +64,15 @@ class _FlutterReduxAppState extends State<FlutterReduxApp> {
                 // DebugLabel.showDebugLabel(context);
                 return WelcomePage();
               },
+              LoginPage.sName: (context){
+                return NavigatorUtils.pageContainer(LoginPage(), context);
+              },
+              HomePage.sName: (context){
+                // return HomePage();
+                return NavigatorUtils.pageContainer(HomePage(), context);
+              }
+
+
               // PhotoViewPage.sName: (context) {
               //   return PhotoViewPage();
               // },
