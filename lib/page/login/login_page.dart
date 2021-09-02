@@ -43,7 +43,6 @@ class _LoginPageState extends State<LoginPage> with LoginBLoc {
         body: new Container(
           child: Stack(children: <Widget>[
             // 背景色 背景动画
-
             Center(
               child: SafeArea(child: SingleChildScrollView(
                 child: Card(
@@ -61,10 +60,19 @@ class _LoginPageState extends State<LoginPage> with LoginBLoc {
                         GSYInputWidget(
                           hintText: 'name',
                           iconData: GSYIcons.LOGIN_USER,
-                          // onChanged: (String value){
-                          //   _username = value
-                          // },
+                          onChanged: (String value){
+                            _username = value;
+                          },
                           controller: userController,
+                        ),
+                        Padding(padding: EdgeInsets.all(10)),
+                        GSYInputWidget(
+                          hintText: 'password',
+                          iconData: GSYIcons.LOGIN_PW,
+                          onChanged: (String value){
+                            _password = value;
+                          },
+                          controller: pwController,
                         )
                       ],
                     ),

@@ -42,8 +42,9 @@ class _FlutterReduxAppState extends State<FlutterReduxApp> {
         store: store,
         // StoreBuilder: 把从StoreProvider获取到的store直接通过build方法返回
         child: new StoreBuilder<GSYState>(builder: (context, store) {
-          //       print(WidgetsBinding.instance?.window.locale);
+          // print(WidgetsBinding.instance?.window.locale);
           // print(typedef WidgetsBinding);
+          store.state.platformLocale = WidgetsBinding.instance!.window.locale;
           return new MaterialApp(
             // GlobalMaterialLocalizations.delegate 为Material Components库提供了本地化的字符串和其他值。
             // GlobalWidgetsLocalizations.delegate定义widget默认的文本方向，从左到右或从右到左

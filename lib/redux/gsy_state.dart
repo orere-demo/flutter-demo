@@ -5,7 +5,8 @@ import 'package:demo1/model/User.dart';
 class GSYState {
   User? userInfo;
   bool? login;
-  Locale? locale;
+  Locale? locale; // 语言
+  Locale? platformLocale; // 当前手机平台默认语言
 
   // GSYState({this.userInfo});
   GSYState({this.userInfo, this.login, this.locale});

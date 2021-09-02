@@ -10,7 +10,7 @@ class GSYInputWidget extends StatefulWidget {
   final String? hintText;
   final IconData? iconData;
   final TextStyle? textStyle;
-  final ValueChanged? onChanged;
+  final ValueChanged<String>? onChanged;
   final TextEditingController? controller;
 
   GSYInputWidget({Key? key,
