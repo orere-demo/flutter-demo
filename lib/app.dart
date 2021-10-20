@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-21 14:12:29
+ * @LastEditTime: 2021-09-05 14:46:34
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \demo1\lib\app.dart
+ */
 import 'package:demo1/page/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -5,11 +13,12 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:demo1/redux/gsy_state.dart';
 import 'package:demo1/model/User.dart';
+import 'package:demo1/common/localization/gsy_localizations_delegate.dart';
 import 'package:demo1/common/utils/navigator_utils.dart';
 import 'package:demo1/page/welcome_page.dart';
 import 'package:demo1/page/home/home_page.dart';
-import 'package:demo1/page/login/login_page.dart';
-import 'package:demo1/page/photoview_page.dart';
+// import 'package:demo1/page/login/login_page.dart';
+// import 'package:demo1/page/photoview_page.dart';
 
 class FlutterReduxApp extends StatefulWidget {
   FlutterReduxApp({Key? key}) : super(key: key);
@@ -34,6 +43,7 @@ class _FlutterReduxAppState extends State<FlutterReduxApp> {
         userInfo: User.empty(),
         locale: Locale('zh', 'CH'),
         login: false,
+        // themeData: CommonUtils.getThemeData(GSYColors.primarySwatch),
       ));
 
   @override
@@ -50,29 +60,28 @@ class _FlutterReduxAppState extends State<FlutterReduxApp> {
             // GlobalWidgetsLocalizations.delegate定义widget默认的文本方向，从左到右或从右到左
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate
+              GlobalWidgetsLocalizations.delegate,
+              GSYLocalizationsDelegate.delegate
             ],
+            // 当前区域，如果为null则使用系统区域 一般用于语言切换
             supportedLocales: [
-              const Locale('en', 'US'), // English
-              const Locale('zh', 'CH'), // Hebrew
+              store.state.locale ?? store.state.platformLocale!
             ],
-            // locale: 当前区域，如果为null则使用系统区域 一般用于语言切换
             locale: store.state.locale,
-            // navigatorObservers: [this],
+            theme: store.state.themeData,
             routes: {
               WelcomePage.sName: (context) {
                 // _context = context;
                 // DebugLabel.showDebugLabel(context);
                 return WelcomePage();
               },
-              LoginPage.sName: (context){
+              LoginPage.sName: (context) {
                 return NavigatorUtils.pageContainer(LoginPage(), context);
               },
-              HomePage.sName: (context){
+              HomePage.sName: (context) {
                 // return HomePage();
                 return NavigatorUtils.pageContainer(HomePage(), context);
               }
-
 
               // PhotoViewPage.sName: (context) {
               //   return PhotoViewPage();

@@ -2,10 +2,9 @@ import 'dart:async';
 import 'package:demo1/common/utils/navigator_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:demo1/common/style/gsy_style.dart';
 import 'package:demo1/common/config/config.dart';
 import 'package:demo1/common/local/local_storage.dart';
-
+import 'package:demo1/common/style/gsy_style.dart';
 import 'package:demo1/widget/gsy_input_widget.dart';
 
 class LoginPage extends StatefulWidget {
@@ -35,52 +34,62 @@ class _LoginPageState extends State<LoginPage> with LoginBLoc {
     // 触摸收起键盘
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
-      onTap: (){
+      onTap: () {
         // FocusScope 用来切换焦点隐藏软键盘(传入空的焦点，隐藏软键盘)
         FocusScope.of(context).requestFocus(new FocusNode());
       },
       child: Scaffold(
         body: new Container(
-          child: Stack(children: <Widget>[
-            // 背景色 背景动画
-            Center(
-              child: SafeArea(child: SingleChildScrollView(
-                child: Card(
-                  elevation: 4.0,
-                  color: Colors.blue,
-                  margin: EdgeInsets.all(30),
-                  child: Padding(
-                    padding: EdgeInsets.all(30),
-                    child: Column(
-                      children: [
-                        Image(image: new AssetImage(GSYIcons.DEFAULT_USER_ICON),
-                        width: 90,
-                        height: 90,),
-                        Padding(padding: EdgeInsets.all(10)),
-                        GSYInputWidget(
-                          hintText: 'name',
-                          iconData: GSYIcons.LOGIN_USER,
-                          onChanged: (String value){
-                            _username = value;
-                          },
-                          controller: userController,
-                        ),
-                        Padding(padding: EdgeInsets.all(10)),
-                        GSYInputWidget(
-                          hintText: 'password',
-                          iconData: GSYIcons.LOGIN_PW,
-                          onChanged: (String value){
-                            _password = value;
-                          },
-                          controller: pwController,
-                        )
-                      ],
+          child: Stack(
+            children: <Widget>[
+              // 背景色 背景动画
+              // Positioned.fill(child: AnimatedBackground()),
+              // Positioned.fill(child: ParticlesWidget(30)),
+              Center(
+                // SafeArea 适配异形屏
+                child: SafeArea(
+                    // SingleChildScrollView，可滚动组件防止overFlow的现象
+                    child: SingleChildScrollView(
+                  child: Card(
+                    // elevation 阴影高度
+                    elevation: 4.0,
+                    color: Colors.white,
+                    margin: EdgeInsets.all(30),
+                    child: Padding(
+                      padding: EdgeInsets.all(30),
+                      child: Column(
+                        children: [
+                          Image(
+                            image: new AssetImage(GSYIcons.DEFAULT_USER_ICON),
+                            width: 90,
+                            height: 90,
+                          ),
+                          Padding(padding: EdgeInsets.all(10)),
+                          GSYInputWidget(
+                            hintText: 'name',
+                            iconData: GSYIcons.LOGIN_USER,
+                            onChanged: (String value) {
+                              _username = value;
+                            },
+                            controller: userController,
+                          ),
+                          Padding(padding: EdgeInsets.all(10)),
+                          GSYInputWidget(
+                            hintText: 'password',
+                            iconData: GSYIcons.LOGIN_PW,
+                            onChanged: (String value) {
+                              _password = value;
+                            },
+                            controller: pwController,
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              )),
-            )
-          ],),
+                )),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -88,7 +97,7 @@ class _LoginPageState extends State<LoginPage> with LoginBLoc {
 }
 
 // mixin 为类添加功能， 可以用on来指定可以使用Mixin的父类类型
-mixin LoginBLoc on State<LoginPage>{
+mixin LoginBLoc on State<LoginPage> {
   // controller
   final TextEditingController userController = new TextEditingController();
   final TextEditingController pwController = new TextEditingController();
@@ -97,26 +106,27 @@ mixin LoginBLoc on State<LoginPage>{
   String? _password = "";
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     initParams();
   }
 
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
     userController.removeListener(_usernameChange);
     pwController.removeListener(_passwordChange);
   }
 
-  _usernameChange(){
+  _usernameChange() {
     _username = userController.text;
   }
-  _passwordChange(){
+
+  _passwordChange() {
     _password = pwController.text;
   }
 
-  initParams() async{
+  initParams() async {
     _username = await LocalStorage.get(Config.USER_NAME_KEY);
     _password = await LocalStorage.get(Config.PW_KEY);
     userController.value = TextEditingValue(text: _username ?? "");
@@ -124,14 +134,12 @@ mixin LoginBLoc on State<LoginPage>{
   }
 
   // 账号登录
-  loginIn() async{
+  loginIn() async {
     Fluttertoast.showToast(msg: 'msg');
   }
 
-  oauthLogin() async{
-    String? code = await NavigatorUtils.goLoginWebView(context,
-      'urlurl',
-      'title'
-    );
+  oauthLogin() async {
+    String? code =
+        await NavigatorUtils.goLoginWebView(context, 'urlurl', 'title');
   }
 }
